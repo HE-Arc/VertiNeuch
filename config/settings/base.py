@@ -49,6 +49,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     'crispy_forms',  # Form layouts
+    'bootstrap3',
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
@@ -59,6 +60,7 @@ LOCAL_APPS = [
     # custom users app
     'vertineuch.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'vertineuch.lessons'
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

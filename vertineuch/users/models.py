@@ -6,14 +6,21 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 @python_2_unicode_compatible
 class User(AbstractUser):
-
     # First Name and Last Name do not cover name patterns
     # around the globe.
-    name = models.CharField(_('Name of User'), blank=True, max_length=255)
+    last_name = models.CharField(_('Last name of User'), blank=True, max_length=255)
+    first_name = models.CharField(_('First name of User'), blank=True, max_length=255)
+    avatar = ProcessedImageField(upload_to='avatars',
+                                 processors=[ResizeToFill(100, 100)],
+                                 format='JPEG',
+                                 options={'quality': 60},
+                                 default='default.jpg')
 
     def __str__(self):
         return self.username

@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'imagekit',     # images
 ]
 
 # Apps specific for this project go here.

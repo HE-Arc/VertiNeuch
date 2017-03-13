@@ -8,3 +8,5 @@ Vertineuch est une plateforme qui réunit des offres d'activités proposées par
 renommer le fichier env.exemple et .env et l'adapter avec ses paramètres.
 pip install -r requierments/local.txt
 npm install
+python manage.py syncdb
+python manage.py runserver

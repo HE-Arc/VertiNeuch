@@ -1,4 +1,25 @@
 from django.contrib import admin
-from .models import lesson
+from django.contrib.admin import ModelAdmin
 
-admin.site.register(lesson)
+from vertineuch.lessons.forms import LessonChangeForm, LessonCreationForm
+from .models import Lesson
+
+
+class MyLessonChangeForm(LessonChangeForm):
+    class Meta(LessonChangeForm.Meta):
+        model = Lesson
+
+class MyLessonCreationForm(LessonCreationForm):
+    class Meta(LessonCreationForm.Meta):
+        model = Lesson
+
+
+@admin.register(Lesson)
+class MyLessonAdmin(ModelAdmin):
+    form = MyLessonChangeForm
+    add_form = MyLessonCreationForm
+    fieldsets = (
+
+    )
+    list_display = ()
+    search_field = []

@@ -1,8 +1,13 @@
 from django import forms
-from .models import lesson
+from .models import Lesson
 
 
-class courForm(forms.ModelForm):
+class LessonChangeForm(forms.ModelForm):
     class Meta:
-        model = lesson
+        model = Lesson
+        fields = ['name', ]
+
+class LessonCreationForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
         fields = ['name', ]

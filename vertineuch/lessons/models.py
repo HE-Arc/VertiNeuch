@@ -1,12 +1,12 @@
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from vertineuch.users.models import User
 
 
 class Lesson(models.Model):
     name = models.CharField(max_length=255)
-    teacher = models.ForeignKey(User)
+    teacher = models.ForeignKey(settings.AUTH_USER_MODEL)
 
     def __str__(self):
         return self.name

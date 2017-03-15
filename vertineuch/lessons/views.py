@@ -17,6 +17,10 @@ class LessonCreateView(LoginRequiredMixin, CreateView):
     form_class = LessonCreationForm
     success_url = reverse_lazy('lessons:list')
 
+    def form_valid(self, form):
+        form.instance.teacher = self.request.user
+        return super(LessonCreateView, self).form_valid(form)
+
 
 class LessonDetailView(DetailView):
     model = Lesson

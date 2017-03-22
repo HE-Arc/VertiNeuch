@@ -9,6 +9,7 @@ class MyLessonChangeForm(LessonChangeForm):
     class Meta(LessonChangeForm.Meta):
         model = Lesson
 
+
 class MyLessonCreationForm(LessonCreationForm):
     class Meta(LessonCreationForm.Meta):
         model = Lesson

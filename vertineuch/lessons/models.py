@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.db import models
 
 
-
 class Lesson(models.Model):
     name = models.CharField(max_length=255)
     teacher = models.ForeignKey(settings.AUTH_USER_MODEL)

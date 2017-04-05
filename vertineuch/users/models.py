@@ -8,7 +8,6 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 
-@python_2_unicode_compatible
 class User(AbstractUser):
     # First Name and Last Name do not cover name patterns
     # around the globe.
@@ -19,6 +18,7 @@ class User(AbstractUser):
                                  format='JPEG',
                                  options={'quality': 60},
                                  default='default.jpg')
+    is_teacher = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username

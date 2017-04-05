@@ -2,7 +2,7 @@
 {% load static %}
 {% load imagekit %}
 
-{% block title %}User: {{ object.username }}{% endblock %}
+{% block title %}User: {{ object.first_name }} {{ object.last_name }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -10,25 +10,33 @@
   <div class="row">
     <div class="col-sm-12">
     <img src="{{ object.avatar.url }}" />
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+    <h2>{{ object.username }}</h2>
+    <p>{{ object.first_name }} {{ object.last_name }}</p>
+    <p>{{ object.email }}</p>
     </div>
+    {% if object.is_teacher %}
+        <div>
+            <h2>Lessons</h2>
+            {% for l in object.lesson_set.all %}
+                - {{ l.name }} <a class="btn btn-primary" href="{% url 'lessons:detail' l.pk %}" role="button">Details</a><br />
+            {% endfor %}
+        </div>
+    {% endif %}
   </div>
 
 {% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
+    <br>
+    <!-- Action buttons -->
+    <div class="row">
 
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
+      <div class="col-sm-12">
+        <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+        <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+        <!-- Your Stuff: Custom user template urls -->
+      </div>
 
-</div>
-<!-- End Action buttons -->
+    </div>
+    <!-- End Action buttons -->
 {% endif %}
 
 

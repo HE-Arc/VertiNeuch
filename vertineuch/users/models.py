@@ -2,10 +2,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+
+from vertineuch.lessons.models import Lesson
 
 
 class User(AbstractUser):
@@ -18,7 +19,9 @@ class User(AbstractUser):
                                  format='JPEG',
                                  options={'quality': 60},
                                  default='default.jpg')
+    # TODO: change this to a group ?
     is_teacher = models.BooleanField(default=False)
+    subscribed_lessons = models.ManyToManyField(Lesson, related_name="subscribed_lessons")
 
     def __str__(self):
         return self.username

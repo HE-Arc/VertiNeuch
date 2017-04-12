@@ -1,7 +1,35 @@
 {% extends "base.html" %}
+{% load subscribe_tag %}
 
 {% block content %}
     <h1>Detail</h1>
     <p>{{ object.name }}</p>
+
+    {% if request.user.is_authenticated  %}
+        <!-- Working need to put it in JS onClick -->
+        <button class="btn btn-primary" onclick="subscribe_onClick()">Subscribe</button>
+    {% endif %}
+
     <a href="{% url 'lessons:list' %}">List</a>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+        function subscribe_onClick() {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'lessons:subscribe' object.pk %}",
+                data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                dataType: "json",
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(rs, e) {
+                    console.log(rs.responseText)
+                }
+            });
+        }
+    </script>
 {% endblock %}

@@ -29,4 +29,9 @@ urlpatterns = [
         view=views.LessonDeleteView.as_view(),
         name='delete'
     ),
+    url(
+        regex=r'^(?P<pk>\d+)/subscribe/$',
+        view=views.LessonSubscribeView.as_view(),
+        name='subscribe'
+    ),
 ]

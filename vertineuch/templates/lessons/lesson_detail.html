@@ -6,10 +6,15 @@
 
     {% if request.user.is_authenticated  %}
         <!-- Working need to put it in JS onClick -->
-        <button class="btn btn-primary" onclick="subscribe_onClick()">Subscribe</button>
+        {% if object in request.user.subscribed_lessons.all %}
+            <button id="sub-btn" class="btn btn-primary" onclick="subscribe_onClick()">Unsubscribe</button>
+        {% else %}
+            <button id="sub-btn" class="btn btn-primary" onclick="subscribe_onClick()">Subscribe</button>
+        {% endif %}
     {% endif %}
 
     <a href="{% url 'lessons:list' %}">List</a>
+
 {% endblock %}
 
 {% block javascript %}
@@ -23,10 +28,17 @@
                 data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 dataType: "json",
                 success: function(response) {
-                    alert(response.message);
+                    var btn_text = "";
+                    if(response.is_sub)
+                        btn_text = "unsubscribe";
+                    else
+                        btn_text = "subscribe";
+
+
+                    $("#sub-btn").text(btn_text);
                 },
                 error: function(rs, e) {
-                    console.log(rs.responseText)
+                    console.log(rs.responseText);
                 }
             });
         }

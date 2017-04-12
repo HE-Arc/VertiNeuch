@@ -14,6 +14,13 @@
     <p>{{ object.first_name }} {{ object.last_name }}</p>
     <p>{{ object.email }}</p>
     </div>
+    <div>
+        <h2>Subscribed lessons</h2>
+        {% for l in object.subscribed_lessons.all %}
+            - {{ l.name }} <a class="btn btn-primary" href="{% url 'lessons:detail' l.pk %}" role="button">Details</a><br />
+        {% endfor %}
+    </div>
+
     {% if object.is_teacher %}
         <div>
             <h2>Lessons</h2>

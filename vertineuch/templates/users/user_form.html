@@ -8,6 +8,10 @@
   <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{% url 'users:update' %}">
     {% csrf_token %}
     {{ form|crispy }}
+
+
+    <a class="btn" href="{% url 'account_email' %}" role="button">Modifier E-Mail</a>
+
     <div class="control-group">
       <div class="controls">
         <button type="submit" class="btn">Update</button>

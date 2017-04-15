@@ -8,12 +8,7 @@
     <ul>
         {% for object in object_list %}
             <li>
-                {{ object }}
-                <a href="{{ object.get_absolute_url }}">Details</a>
-                {% if object.teacher == request.user %}
-                    <a href="{% url 'lessons:update' object.pk %}">Update</a>
-                    <a href="{% url 'lessons:delete' object.pk %}">Delete</a>
-                {% endif %}
+                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
             </li>
         {% empty %}
                 <p>No items.</p>

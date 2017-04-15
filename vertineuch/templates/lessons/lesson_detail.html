@@ -1,19 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Detail</h1>
-    <p>{{ object.name }}</p>
+    <h1>{{ object.name }}</h1>
+
+    {% if object.teacher == request.user %}
+        <div>
+            <a href="{% url 'lessons:update' object.pk %}">Update</a>
+            <a href="{% url 'lessons:delete' object.pk %}">Delete</a>
+        </div>
+    {% endif %}
+
+    <p>Enseignant : <a href="{% url 'users:detail' object.teacher %}">{{ object.teacher }}</a></p>
+    <p>{{ object.description }}</p>
+
+    <p> TODO Heure + dates</p>
+
+    <div>
+        Participants :
+        <ul>
+            {% for u in object.subscribed_lessons.all %}
+                <li><a href="{% url 'users:detail' u %}">{{ u }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 
     {% if request.user.is_authenticated  %}
-        <!-- Working need to put it in JS onClick -->
         {% if object in request.user.subscribed_lessons.all %}
             <button id="sub-btn" class="btn btn-primary" onclick="subscribe_onClick()">Unsubscribe</button>
         {% else %}
             <button id="sub-btn" class="btn btn-primary" onclick="subscribe_onClick()">Subscribe</button>
         {% endif %}
     {% endif %}
-
-    <a href="{% url 'lessons:list' %}">List</a>
 
 {% endblock %}
 

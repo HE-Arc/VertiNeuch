@@ -63,7 +63,8 @@ class LessonSubscribeView(LoginRequiredMixin, DetailView):
         lesson = self.model(self.get_object())
         lesson = lesson.id
 
-        if user.subscribed_lessons.filter(subscribed_lessons__id=lesson.pk).exists():
+        # if user.subscribed_lessons.filter(subscribed_lessons=lesson).exists():
+        if lesson in user.subscribed_lessons.all():
             user.subscribed_lessons.remove(lesson)
             is_sub = False
         else:

@@ -1,1 +1,15 @@
 {% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+  <style type="text/css">
+          body {
+           background: url('{% static "images/fond-ext.jpg" %}') no-repeat center center fixed;
+           -webkit-background-size: cover;
+           -moz-background-size: cover;
+           -o-background-size: cover;
+           background-size: cover;
+          }
+  </style>
+{% endblock content %}

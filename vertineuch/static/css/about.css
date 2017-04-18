@@ -1,0 +1,16 @@
+
+{% block content %}
+{% load staticfiles %}
+.container1 {
+    background-color: #fff;
+    background: url('{% static "images/fond-ext.jpg" %}') no-repeat center center fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border: 1px none #ff0;
+    height: 590px;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+    width: 960px;
+}
+{% endblock content %}

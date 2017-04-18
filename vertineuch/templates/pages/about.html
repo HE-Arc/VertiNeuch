@@ -1,1 +1,43 @@
 {% extends "base.html" %}
+
+{% load staticfiles i18n compress%}<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}VertiNeuch{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    {% block css %}
+    <!-- Latest compiled and minified Bootstrap 4 Alpha 4 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    {% compress css %}
+    <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/about.css' %}" rel="stylesheet">
+    {% endcompress %}
+    {% endblock %}
+
+  </head>
+{% block content %}
+  <div name="mainContent1">
+    <h1>Présentation</h1>
+    <p>Notre passion pour la montagne et l’escalade nous a fait découvrir pas mal de recoins de Suisse ainsi que les quatre coins du monde. Cette passion est ensuite devenue un métier qu'on exerce maintenant depuis plusieurs années. Petit à petit l'idée de présenter un programme d'activités dans les régions jurassiennes et alpines, voire plus loin, nous est parue évidente. Vertineuch est le fruit de cette gestation et nous vous offrons de partager notre expérience au travers du programme d'activités que nous proposons.</p>
+      <p>
+      Vertineuch est une plateforme qui réunit des offres d’activités proposées par des guides de montagne et moniteurs d’escalade de la région neuchâteloise et jurassienne afin de répondre à la demande croissante pour l’escalade en salle et les activités se déroulant en pleine nature.
+      <br>
+      Nous mettons à votre disposition l’encadrement et les compétences de professionnels pour réaliser vos envies de sport, de sensations, d’aventures, d’évasions ou de plein air !
+      </p>
+    <p>Prenez le temps de consulter notre programme et de chercher les activités qui vous intéressent Regardez nos galeries d’images pour trouver ce qui correspond à vos souhaits ou suscite d’autres envies ! Et n’hésitez pas à nous contacter si aucune de nos offres ne répond à vos besoins.</p>
+    <h6>Votre équipe Vertineuch </h6>
+    </div>
+{% endblock content %}

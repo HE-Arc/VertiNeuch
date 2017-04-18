@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Listing</h1>
+    <h1>Liste des lessons</h1>
     {% if request.user.is_teacher %}
         <a href="{% url 'lessons:create' %}">Create</a>
     {% endif %}
     <ul>
         {% for object in object_list %}
             <li>
-                <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                <a href="{{ object.get_absolute_url }}">{{ object }}  -  {{ object.get_activity_display }}</a>
             </li>
         {% empty %}
                 <p>No items.</p>
@@ -19,13 +19,13 @@
         <div class="pagination">
             <span class="page-links">
                 {% if page_obj.has_previous %}
-                    <a href="{% url 'lessons:list' %}?page={{ page_obj.previous_page_number }}">previous</a>
+                    <a href="{% url 'lessons:list' %}?page={{ page_obj.previous_page_number }}">précendant</a>
                 {% endif %}
                 <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}.
                 </span>
                 {% if page_obj.has_next %}
-                    <a href="{% url 'lessons:list' %}?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="{% url 'lessons:list' %}?page={{ page_obj.next_page_number }}">suivant</a>
                 {% endif %}
             </span>
         </div>

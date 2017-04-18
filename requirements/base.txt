@@ -2,9 +2,10 @@
 # like Pillow and psycopg2
 # See http://bitly.com/wheel-building-fails-CPython-35
 # Verified bug on Python 3.5.1
+wheel==0.29.0
 psycopg2==2.6.2
 pillow==4.0.0
-wheel==0.29.0
+
 
 # Bleeding edge Django
 django==1.10.5

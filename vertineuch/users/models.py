@@ -16,7 +16,7 @@ class User(AbstractUser):
 
     phone_regex = RegexValidator(regex=r'^\+?1?\d{10,13}$',
                                  message="Le numéro de téléphone doit être sous la forme '9999999999' ou '0041999999999'")
-    phone_number = models.CharField(_('Téléphone'), validators=[phone_regex], blank=True, max_length=13)
+    phone_number = models.CharField(_('Téléphone'), validators=[phone_regex], blank=True, max_length=13, null=True)
 
     avatar = ProcessedImageField(verbose_name='Avatar',
                                  upload_to='avatars',

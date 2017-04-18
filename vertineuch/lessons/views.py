@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.urlresolvers import reverse_lazy
@@ -27,6 +28,23 @@ class LessonCreateView(LoginRequiredMixin, CreateView):
 
 class LessonDetailView(DetailView):
     model = Lesson
+
+    def get_context_data(self, **kwargs):
+        obj = Lesson(self.get_object()).id
+        context = super(LessonDetailView, self).get_context_data(**kwargs)
+
+        date_list = []
+        date = datetime.datetime(obj.start_date.year, obj.start_date.month, obj.start_date.day)
+        end_date = datetime.datetime(obj.end_date.year, obj.end_date.month, obj.end_date.day)
+
+        while date <= end_date:
+            date_list.append(date)
+            date = date + datetime.timedelta(days=obj.frequency)
+
+        extra_context = {'dates': date_list}
+
+        context.update(extra_context)
+        return context
 
 
 class LessonUpdateView(LoginRequiredMixin, UpdateView):
@@ -63,7 +81,6 @@ class LessonSubscribeView(LoginRequiredMixin, DetailView):
         lesson = self.model(self.get_object())
         lesson = lesson.id
 
-        # if user.subscribed_lessons.filter(subscribed_lessons=lesson).exists():
         if lesson in user.subscribed_lessons.all():
             user.subscribed_lessons.remove(lesson)
             is_sub = False

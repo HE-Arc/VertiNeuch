@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ object.name }}</h1>
+    <h1>{{ object.name }} - {{ object.get_activity_display }}</h1>
 
     {% if object.teacher == request.user %}
         <div>
@@ -11,12 +11,22 @@
     {% endif %}
 
     <p>Enseignant : <a href="{% url 'users:detail' object.teacher %}">{{ object.teacher }}</a></p>
+    <p>Difficulté : {{ object.get_difficulty_display }}</p>
+    <p>Prix: {{ object.price }}</p>
     <p>{{ object.description }}</p>
 
-    <p> TODO Heure + dates</p>
+    <div>
+        <h3>Dates</h3>
+        <p>Ce cours débute à {{ object.time|time:'H:i' }}</p>
+        <ul>
+            {% for d in dates %}
+                <li>{{ d|date:'d-m-Y' }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 
     <div>
-        Participants :
+        <h3>Participants</h3>
         <ul>
             {% for u in object.subscribed_lessons.all %}
                 <li><a href="{% url 'users:detail' u %}">{{ u }}</a></li>

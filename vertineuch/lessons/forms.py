@@ -9,7 +9,7 @@ class LessonChangeForm(forms.ModelForm):
 
     class Meta:
         model = Lesson
-        fields = ['name', 'description', 'activity', 'difficulty', 'time', 'start_date', 'end_date', 'frequency' ]
+        fields = ['name', 'description', 'activity', 'difficulty', 'price', 'time', 'start_date', 'end_date', 'frequency' ]
 
 
 class LessonCreationForm(forms.ModelForm):
@@ -19,4 +19,4 @@ class LessonCreationForm(forms.ModelForm):
 
     class Meta:
         model = Lesson
-        fields = ['name', 'description', 'activity', 'difficulty', 'time', 'start_date', 'end_date', 'frequency' ]
+        fields = ['name', 'description', 'activity', 'difficulty', 'price', 'time', 'start_date', 'end_date', 'frequency' ]

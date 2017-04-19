@@ -72,7 +72,8 @@ DEFAULT_FROM_EMAIL = env('DJANGO_DEFAULT_FROM_EMAIL',
                          default='VertiNeuch <noreply@vertineuch.com>')
 EMAIL_SUBJECT_PREFIX = env('DJANGO_EMAIL_SUBJECT_PREFIX', default='[VertiNeuch]')
 SERVER_EMAIL = env('DJANGO_SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
-
+MAIL_HOST = env('SMTP_HOST')
+MAIL_PORT = env('SMTP_PORT')
 # EMAIL_BACKEND = 'django.core.mail.backends.console'
 
 # TEMPLATE CONFIGURATION

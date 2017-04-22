@@ -7,6 +7,7 @@ Vertineuch est une plateforme qui réunit des offres d'activités proposées par
 
 renommer le fichier env.exemple et .env et l'adapter avec ses paramètres.
 pip install -r requierments/local.txt
-npm install
-python manage.py syncdb
+npm install  # pourquoi faire au juste?
+python manage.py syncdb  # ce truc n'existe plus depuis Django 1.9
+python manage.py migrate
 python manage.py runserver

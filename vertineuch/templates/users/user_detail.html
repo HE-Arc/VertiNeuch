@@ -26,7 +26,6 @@
                 {% endif %}
 
                 {% if object == request.user %}
-                    <br>
                     <!-- Action buttons -->
                     <div class="row">
                         <a class="col-sm-12 btn btn-primary" href="{% url 'users:update' %}" role="button">Modifier le
@@ -43,8 +42,8 @@
                     <ul>
                         {% for l in object.subscribed_lessons.all %}
                             <li>
-                                <a class="" href="{% url 'lessons:detail' l.pk %}"
-                                   role="button">{{ l.name }}</a><br/>
+                                <a href="{% url 'lessons:detail' l.pk %}"
+                                   role="button">{{ l.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -52,12 +51,12 @@
 
                 {% if object.is_teacher %}
                     <div>
-                        <h2>Mes lessons</h2>
+                        <h2>Mes leçons</h2>
                         <ul>
                         {% for l in object.teacher.all %}
                             <li>
-                                <a class="" href="{% url 'lessons:detail' l.pk %}"
-                                   role="button">{{ l.name }}</a><br/>
+                                <a href="{% url 'lessons:detail' l.pk %}"
+                                   role="button">{{ l.name }}</a>
                             </li>
                         {% endfor %}
                         </ul>
